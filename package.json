@@ -11,6 +11,7 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "express": "^4.21.2",
+    "module": "^1.2.5",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.12.0"
   }
