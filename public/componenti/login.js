@@ -1,7 +1,10 @@
 let myToken="";//prende token da conf json
-fetch("conf.json").then(r => r.json()).then(conf => {
-    myToken = conf.cacheToken;
-});
+
+fetch("conf.json")
+  .then(r => r.json())
+  .then(conf => {
+      myToken = conf.cacheConfig.cacheToken;
+  })
 
 export const createLogin = () => {
   //legge valori inseriti dalla form
@@ -12,10 +15,10 @@ export const createLogin = () => {
     const divPrivate = document.querySelector("#private");//legge div che contiene form e tabella admin
     const divLogin = document.querySelector("#login");
   
-    divPrivate.classList.add("hidden");//aggiunge hidden a div form e tabella
+    divPrivate.classList.add("hidden");//aggiunge hidden a div form 
     let isLogged = sessionStorage.getItem("Logged") || false;
   
-    const login = (username, password) => {//fa fetch a ws
+    const login = (username, password) => {//fa fetch a cipiaceinfo login
       return new Promise((resolve, reject) => {
         fetch("http://ws.cipiaceinfo.it/credential/login", {
           method: "POST",
@@ -46,12 +49,12 @@ export const createLogin = () => {
             sessionStorage.setItem("Logged", true);
             logindiv.classList.remove("visible");//rimuove visivle da div login
             logindiv.classList.add("hidden"); //e aggiunge hidden
-            divPrivate.classList.remove("hidden"); //rimuove hidden da div forme tabella
+            divPrivate.classList.remove("hidden"); //rimuove hidden da div form
             divPrivate.classList.add("visible");//e aggiunge visible
           }
         })
         .catch((error) => {//se sbaglio a inserire i dati
-          console.error("Errore durante il login:", error);
+          console.error("Errore durante il login:", error);//stampa errore in console log
         });
     };
   
