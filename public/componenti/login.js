@@ -3,7 +3,7 @@ let myToken="";//prende token da conf json
 fetch("conf.json")
   .then(r => r.json())
   .then(conf => {
-      myToken = conf.cacheConfig.cacheToken;
+      myToken = conf.cacheToken;
   })
 
 export const createLogin = () => {
