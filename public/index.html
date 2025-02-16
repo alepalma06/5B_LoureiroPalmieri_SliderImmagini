@@ -11,22 +11,179 @@
       <style>
          .visible { display: block; }
          .hidden { display: none; }
+
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #b9d5f1;
+         }
+
+         #container {
+            padding: 20px;
+         }
+
+         .page {
+            padding: 20px;
+         }
+
+         button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+         }
+
+         button:hover {
+            background-color: #0056b3;
+         }
+
+         #divlogin {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgb(176, 176, 176);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+         }
+
+         #divlogin h1 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #333;
+         }
+
+         #login input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+         }
+
+         #login-btn {
+            width: 90%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+         }
+
+         #login-btn:hover {
+            background-color: #0056b3;
+         }
+
+         .carousel-inner img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+         }
+
+         .close {
+            background: transparent;
+            border: 2px solid #007bff;  
+            border-radius: 5px;        
+            font-size: 1.5rem;
+            color: #007bff;
+            cursor: pointer;
+            padding: 5px 10px;         
+         }
+
+         .close:hover {
+            color: #0056b3;
+         }
+
+         #aggiungi {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+         }
+
+         #bottonecarosello {
+            background-color: transparent;
+            color: grey;
+            /* padding: 10px 20px; */
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+         }
+
+         #bottonecarosello:hover {
+            background-color: rgba(128, 128, 128, 0.2); 
+            color: grey;
+         }
+
+         .uploadContainer {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+         }
+         h1 {
+            font-family: 'Arial', sans-serif;
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+         }
+
+         .hidden {
+            display: none;
+         }
+
+         .visible {
+            display: block;
+         }
       </style>
 </head>
 <body>
    <div id="container" class="container-fluid">
+      <!-- pagina home -->
       <div id="home" class="page">
+         <h1>SLIDER IMMAGINI</h1>
+         <!-- pulsante admin -->
          <a href="#admin">
             <button type="button" id="aggiungi">ADMIN</button>
          </a>
-         <div class="row">
-            <ul id="link"></ul>
+         <!-- container del carosello -->
+         <div class="container" style="width: 1000px; height: 600px;">
+            <div class="row">
+               <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                  <div id="carouselInner" class="carousel-inner"></div>
+                  <button id="bottonecarosello" class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                     <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button id="bottonecarosello" class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                     <span class="visually-hidden">Next</span>
+                  </button>
+               </div>
+            </div>
          </div>
-      </div>
+      </div>  
+      <!-- pagina admin -->
       <div id="admin" class="page">
+         <!-- pulsante per tornare a home -->
          <a href="#home">
-            <button class="close">⬅️</button>
+            <button class="close">🏠</button>
          </a>
+            <!-- div del form del login -->
             <div id="divlogin" style="width: 400px; margin: 50px auto; padding: 20px; background-color: rgb(176, 176, 176); border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); text-align: center;">
                <h1 style="margin-bottom: 20px; font-size: 1.8rem; color: #333;">ESEGUI IL LOGIN</h1>
                <div id="login" style="display: flex; flex-direction: column; align-items: center;">
@@ -35,13 +192,17 @@
                   <button id="login-btn" type="button" style="width: 90%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">Login</button>
                </div>
             </div>
-            <div id="private" class="hidden">
-               <input id="file" name="file" type="file" single>
-               <button id="button" type="button" class="btn btn-success">Upload</button>  
+            <!-- div del pusante per caricare immagini e tabella admin -->
+            <div id="private" class="hidden uploadContainer">
+               <div class="uploadContainer">
+                  <input id="file" name="file" class="btn btn-success" type="file" single>
+                  <button id="button" type="button" class="btn btn-success">Upload</button>
+               </div> 
+               <table id="tabellaadmin" class="table table-bordered border-info bg-light text-center align-middle"></table> 
             </div>      
          </div>
       </div>
-      </div>
+   </div>
       
    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
